@@ -12,27 +12,24 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-        <!-- Get Font from Google http://www.google.com/webfonts -->
-        <link href='http://fonts.googleapis.com/css?family=Peralta' rel='stylesheet' type='text/css'>
+        
 
         {% block styles %}{% endblock %}
 
     </head>
     <body>
+    <div class="container"></div>
+<div class="container">
   
-        <div class="container">
+
 
             
 
             {% block body %}{% endblock %}
 
-            <footer>
-                <p>Built with love for the people of Proteus</p>
-                
-            </footer>
 
-        </div> <!-- /container -->
 
+</div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
