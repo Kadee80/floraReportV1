@@ -65,11 +65,30 @@ def allflora():
 		}
 	return render_template('allflora.html', **templateData)
 #__________________________________________________________________
+###################################
+@app.route("/flora/<flora_id>")
+def solution_display(flora_id):
 
-from flask import jsonify
+	# get solution by solution_slug
+	try:
+		flora = models.Flora.objects.get(id=flora_id)
+	except:
+		abort(404)
+
+	# prepare template data
+	templateData = {
+		'flora' : flora,
+		'species' : species,
+	
+		}
+
+	# render and return the template
+	return render_template('singleflora.html', **templateData)
 
 
 ####################################
+from flask import jsonify
+
 @app.route('/data/flora')
 def data_flora():
  

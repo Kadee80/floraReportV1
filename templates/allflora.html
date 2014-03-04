@@ -12,8 +12,8 @@
 		{% for f in flora %}
 			<tr>
 			<td>
-			
-				<a href="/specie/{{f.species|replace(" ","_")}}">{{ f.species|replace("_"," ")}}</a> 
+			<a href="/flora/{{f.id}}">{{ f.species|replace("_"," ")}}
+				<!--<a href="/specie/{{f.species|replace(" ","_")}}">{{ f.species|replace("_"," ")}}</a> -->
 			
 			</td>
 			<td>{{f.point[1]}}</td>
