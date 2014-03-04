@@ -18,17 +18,41 @@
 		<p> Plant illustration img here </p>
 		</div>
 		<!-- right column -->
-		
+
 		<div id='map' <div class="col-md-5 col-md-offset-1 well" style="height:160px;">
 			
 			<p> coordinates for mapbox vis: {{flora.point[1]}},{{flora.point[0]}}</p>
 
 		</div>
+		<div id="lat">{{theft.point[1]}}</div>
+<div id="lon">{{theft.point[0]}}</div>
 	</div>
 
 <script>
-  var map = L.mapbox.map('map', 'kt80.kt80.h7bc42fd')
-  .setView([{{flora.point[1]}}, {{flora.point[0]}}], 14);
+  
+
+
+var lat = {{theft.point[1]}}
+
+var lon = {{theft.point[0]}}
+var ltln = [lat , lon]
+
+
+
+var map = L.mapbox.map('map', 'kt80.kt80.h7bc42fd').setView([lat, lon], 15);
+var theftIcon = L.icon({
+	iconUrl: '../static/img/leaf.png',
+
+
+    iconSize:     [30,30], // size of the icon
+
+    iconAnchor:   [15,15], // point of the icon which will correspond to marker's location
+
+    popupAnchor:  [0,0] // point from which the popup should open relative to the iconAnchor
+});
+
+L.marker(ltln, {icon: theftIcon}).bindPopup().addTo(map)
+
 </script>
 
 
