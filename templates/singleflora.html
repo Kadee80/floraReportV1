@@ -40,7 +40,7 @@ var ltln = [lat , lon]
 
 
 var map = L.mapbox.map('map', 'kt80.kt80.h7bc42fd').setView([lat, lon], 15);
-var theftIcon = L.icon({
+var leafIcon = L.icon({
 	iconUrl: '../static/img/leaf.png',
 
 
@@ -51,7 +51,7 @@ var theftIcon = L.icon({
     popupAnchor:  [0,0] // point from which the popup should open relative to the iconAnchor
 });
 
-L.marker(ltln, {icon: theftIcon}).bindPopup().addTo(map)
+L.marker(ltln, {icon: leafIcon}).bindPopup().addTo(map)
 
 </script>
 
