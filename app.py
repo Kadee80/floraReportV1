@@ -9,7 +9,7 @@ from flask.ext.mongoengine import MongoEngine
 
 
 app = Flask(__name__)   # create our flask app
-app.config['CSRF_ENABLED'] = False
+#app.config['CSRF_ENABLED'] = False
 #app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # --------- Database Connection ---------
