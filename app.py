@@ -12,6 +12,8 @@ app = Flask(__name__)   # create our flask app
 #app.config['CSRF_ENABLED'] = False
 #app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
+
+
 # --------- Database Connection ---------
 # MongoDB connection to MongoLab's database
 app.config['MONGODB_SETTINGS'] = {'HOST':os.environ.get('MONGOLAB_URI'),'DB': 'GowanusFlora'}
@@ -21,13 +23,71 @@ db = MongoEngine(app) # connect MongoEngine with Flask App
 # import data models
 import models
 
+
 # hardcoded categories for the checkboxes on the form
 species = ['Wild Madder', 'Mugwort', 'Lambs Quarters', 'Shepherds Purse', 'Storksbill', 'White Clover', 'Bittersweet Nightshade', 'Black Medick', 
 'Rough Fruitted Cinquefoil', 'Common Groundsel', 'Garlic Mustard']
+
+# Plant Info Catalog
+plants = {}
+plants['Red Maple']= {
+	'thumb':'sm_redmaple.jpg',
+	'image':'lg_redmaple.jpg',
+	'latin':'Acer Rubrum',
+	'aka': ['Swamp Maple', 'Soft Maple'],
+	'characteristics': [
+	'3 lobes (occasionally 5) in palmate arrangement', 
+	'Closely toothed edges with sharp v-shaped shallow sinuses (indentations)',
+	'Flowers appear before leaves',
+	'Red buds and twigs',
+	'Samaras (seed pods) are small (less than 1 inch)'
+	],
+	'native':'Gowanus',
+	'facts': ['Early settlers made ink and dye from the bark.', 'It is the most common variety of tree in North America.']
+}
+plants['Norway Maple']={
+	'thumb':'sm_norwaymaple.jpg',
+	'image':'lg_norwaymaple.jpg',
+	'latin':'Acer platanoides',
+	'aka':[''],
+	'characteristics':[
+	'5 lobes in palmate arrangement',
+	'Smoothed edges or very few teeth with rounded sinuses (indentations)',
+	'Some variations have purple leaves',
+	'Red or green buds',
+	'Stout and blunt petiole',
+	'Milky sap'
+	],
+	'native':'Europe and Southwest Asia',
+	'facts':['It is possibly the most common street tree in eastern cities.', 'It was introduced as an ornamental species.']	
+}
+plants['Silver Maple']={
+	'thumb':'sm_silvermaple.jpg',
+	'image':'lg_silvermaple.jpg',
+	'latin':'Acer saccharinum',
+	'aka':['Creek Maple', 'Silverleaf Maple', 'Water Maple'],
+	'characteristics':[
+	'5 lobes in palmate arrangement',
+	'6 inch leaves',
+	'Closely toothed edges with sharp v-shaped deep sinuses (indentations)',
+	'2 inch samaras'
+	],
+	'native':'Gowanus',
+	'facts':['It is too big to be a street tree and should only be planted in parks.', 'It was introduced as an ornamental species.']
+
+}
+
+
+
 # --------- Routes ----------
 # this is our main pagex
 @app.route("/", methods=['GET','POST'])
 def index():
+	return render_template("main.html")
+# this is our report page
+@app.route("/report/<plant>", methods=['GET','POST'])
+def report(plant):
+
 
 	# if form was submitted and it is valid...
 	if request.method == "POST":
@@ -39,7 +99,7 @@ def index():
 		flora.point = [float(request.form.get('lon')), float(request.form.get('lat'))]
 		flora.near = request.form.get('near')
 	
-		flora.species = request.form.get('species') # getlist will pull multiple items into a list
+		flora.species = plant
 
 		flora.save() # save it
 
@@ -53,9 +113,10 @@ def index():
 		templateData = {
 		'flora' : models.Flora.objects(),
 		'species' : species,
+		'plant':plant
 		
 		}
-		return render_template("main.html", **templateData)
+		return render_template("report.html", **templateData)
 
 @app.route("/allflora")
 def allflora():
@@ -65,11 +126,19 @@ def allflora():
 		}
 	return render_template('allflora.html', **templateData)
 #__________________________________________________________________
+
+# this is our main pagex
+@app.route("/catalog")
+def catalog():
+
+	# render and return the template
+	return render_template('catalog.html', plants=plants)
+
 ###################################
 @app.route("/flora/<flora_id>")
 def solution_display(flora_id):
 
-	# get solution by solution_slug
+	# get flora by id
 	try:
 		flora = models.Flora.objects.get(id=flora_id)
 	except:
