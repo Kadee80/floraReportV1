@@ -2,15 +2,14 @@
 
 {% block body %}
 
-
-{% for name, info in plants.items() %}
+{% for name, info in SOHplants.items() %}
 <div class="row well">
 <!-- left column -->
 	<div class="col-md-4 ">
 		<img class=" img-rounded" src="/static/img/{{ info.get('thumb') }}">
 	</div>
 	<!-- right column -->
-	<div class="col-md-8 "style="padding-left:20px;" >
+	<div class="col-md-8 "style="padding-left:20px; min-height:300px;" >
 		<h3>{{name|replace("_"," ")}} <em>{{info.get('latin')|replace("_", " ")}}</em></h3>
 		<h5>
 			{% for aka in info.get('aka') %}
@@ -26,10 +25,94 @@
 			{%endfor%}
 			</ul>
 		</p>
-		<a href="report/{{name|replace(" ","-")}}" class="pull-right">report a sighting</a>
+		<a href="report/{{name|replace(" ","-")}}" class="btn btn-default btn-lg pull-right" style="position:absolute; bottom:0;">report a sighting</a>
 	</div>
 </div><!--endrow-->
 {% endfor %}
+
+
+        
+      
+        <div class="collapse-group">
+            <p><a class="btn btn-default btn-lg" data-toggle="collapse" data-target="#single">Single</a></p>
+            <div class="collapse in" id="single">
+                
+                
+                <div class="collapse-group">
+                    <p><a class="btn btn-default btn-lg" data-toggle="collapse" data-target="#sopposite">Opposite</a></p>
+                    <div class="collapse "  id="sopposite">
+
+		                    <div class="collapse-group">
+
+		                    <p><a class="btn btn-default btn-lg" data-toggle="collapse" data-target="#soheart">Heart Shaped</a><a class="btn btn-default btn-lg" data-toggle="collapse" data-target="#solobed">Lobed</a><a class="btn btn-default btn-lg" data-toggle="collapse" data-target="#sosimple">Simple</a></p>
+		                    <div class="collapse "  id="soheart">
+
+		                        heart shaped
+		                        
+		                       
+		                    </div>
+		                     <div class="collapse "  id="solobed">
+
+		                        lobed
+		                        
+		                       
+		                    </div>
+
+		                    <div class="collapse "  id="sosimple">
+
+		                        simple
+		                        
+		                       
+		                    </div>
+
+		                    </div>
+                        
+                       
+                    </div>
+
+
+					 <p><a class="btn btn-default btn-lg" data-toggle="collapse" data-target="#salternate">Alternate</a></p>
+                    <div class="collapse "  id="salternate">
+                        alternate
+                        
+                       
+                    </div>
+                 </div>
+
+            </div>
+        </div>
+
+
+
+
+{% for name, info in SOLplants.items() %}
+<div class="row well">
+<!-- left column -->
+	<div class="col-md-4 ">
+		<img class=" img-rounded" src="/static/img/{{ info.get('thumb') }}">
+	</div>
+	<!-- right column -->
+	<div class="col-md-8 "style="padding-left:20px; min-height:300px;" >
+		<h3>{{name|replace("_"," ")}} <em>{{info.get('latin')|replace("_", " ")}}</em></h3>
+		<h5>
+			{% for aka in info.get('aka') %}
+			{{ aka|replace("_"," ")}} &nbsp;
+			{%endfor%}
+		</h5>
+		
+		<h6>Native to: {{info.get('native')}}</h6>
+		<p>
+			<ul>
+			{% for c in info.get('characteristics') %}
+			<li>{{ c|replace("_"," ")}} </li>
+			{%endfor%}
+			</ul>
+		</p>
+		<a href="report/{{name|replace(" ","-")}}" class="btn btn-default btn-lg pull-right" style="position:absolute; bottom:0;">report a sighting</a>
+	</div>
+</div><!--endrow-->
+{% endfor %}
+
 
 
 
@@ -60,6 +143,9 @@
 	<script type="text/javascript" src="../static/js/jquery.fancybox.js?v=2.1.5"></script>
 
 	<script type="text/javascript">
+	$(document).ready(function(){
+          $(".collapse").collapse();
+});
 		$(document).ready(function() {
 			/*
 			 *  Simple image gallery. Uses default settings

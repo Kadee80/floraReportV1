@@ -29,8 +29,8 @@ species = ['Wild Madder', 'Mugwort', 'Lambs Quarters', 'Shepherds Purse', 'Stork
 'Rough Fruitted Cinquefoil', 'Common Groundsel', 'Garlic Mustard']
 
 # Plant Info Catalog
-plants = {}
-plants['Red Maple']= {
+SOLplants = {}
+SOLplants['Red Maple']= {
 	'thumb':'sm_redmaple.jpg',
 	'image':'lg_redmaple.jpg',
 	'latin':'Acer Rubrum',
@@ -45,7 +45,7 @@ plants['Red Maple']= {
 	'native':'Gowanus',
 	'facts': ['Early settlers made ink and dye from the bark.', 'It is the most common variety of tree in North America.']
 }
-plants['Norway Maple']={
+SOLplants['Norway Maple']={
 	'thumb':'sm_norwaymaple.jpg',
 	'image':'lg_norwaymaple.jpg',
 	'latin':'Acer platanoides',
@@ -61,7 +61,7 @@ plants['Norway Maple']={
 	'native':'Europe and Southwest Asia',
 	'facts':['It is possibly the most common street tree in eastern cities.', 'It was introduced as an ornamental species.']	
 }
-plants['Silver Maple']={
+SOLplants['Silver Maple']={
 	'thumb':'sm_silvermaple.jpg',
 	'image':'lg_silvermaple.jpg',
 	'latin':'Acer saccharinum',
@@ -74,6 +74,41 @@ plants['Silver Maple']={
 	],
 	'native':'Gowanus',
 	'facts':['It is too big to be a street tree and should only be planted in parks.', 'It was introduced as an ornamental species.']
+
+}
+
+SOHplants = {}
+
+SOHplants['Catalpa']={
+	'thumb':'sm_catalpa.jpg',
+	'image':'lg_catalpa.jpg',
+	'latin':'Catalpa Scopoli',
+	'aka':[],
+	'characteristics':[
+	'Large heart-shaped to three-lobed leaves',
+	'White or yellow flowers in broad panicles in the autumn',
+	'Long fruits, which resemble a slender string bean'
+	],
+	'native':'Gowanus',
+	'facts':['']
+
+}
+
+SOHplants['Paulownia']={
+	'thumb':'sm_paulownia.jpg',
+	'image':'lg_paulownia.jpg',
+	'latin':'Paulownia tomentosa',
+	'aka':['Empress Tree','Princess Tree', 'Foxglove Tree'],
+	'characteristics':[
+	'Large heart shaped leaves',
+	'6-16 inch leaves',
+	'Purple flowers resemble a foxglove flower',
+	'Fruit is a dry egg-shaped containing numerous tiny seeds '
+
+
+	],
+	'native':'China - Invasive in the US',
+	'facts':['']
 
 }
 
@@ -132,7 +167,7 @@ def allflora():
 def catalog():
 
 	# render and return the template
-	return render_template('catalog.html', plants=plants)
+	return render_template('catalog.html', SOLplants=SOLplants, SOHplants=SOHplants)
 
 ###################################
 @app.route("/flora/<flora_id>")
