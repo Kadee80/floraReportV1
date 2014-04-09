@@ -1,12 +1,45 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<script type="text/javascript">
+	$(document).ready(function(){
+          $(".collapse").collapse();
+});
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+
+		});
+	</script>
+
+
 
 {% for name, info in SOHplants.items() %}
 <div class="row well">
 <!-- left column -->
 	<div class="col-md-4 ">
 		<img class=" img-rounded" src="/static/img/{{ info.get('thumb') }}">
+
 	</div>
 	<!-- right column -->
 	<div class="col-md-8 "style="padding-left:20px; min-height:300px;" >
@@ -95,35 +128,6 @@
 	<!-- Add fancyBox main JS and CSS files -->
 	<script type="text/javascript" src="../static/js/jquery.fancybox.js?v=2.1.5"></script>
 
-	<script type="text/javascript">
-	$(document).ready(function(){
-          $(".collapse").collapse();
-});
-		$(document).ready(function() {
-			/*
-			 *  Simple image gallery. Uses default settings
-			 */
-
-			$('.fancybox').fancybox();
-
-			/*
-			 *  Different effects
-			 */
-
-			// Change title type, overlay closing speed
-			$(".fancybox-effects-a").fancybox({
-				helpers: {
-					title : {
-						type : 'inside'
-					},
-					overlay : {
-						speedOut : 0
-					}
-				}
-			});
-
-
-		});
-	</script>
+	
 
 {% endblock %}
