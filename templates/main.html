@@ -19,11 +19,11 @@ body { margin:0; padding:0; height:100%; width:100%;}
 
 
   .leaflet-popup-content-wrapper{
-    width:200px;
+    width:250px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    padding:10px;
+    padding:15px;
 
     
   }
@@ -89,11 +89,17 @@ body { margin:0; padding:0; height:100%; width:100%;}
 //from bounding box
 //-74.021373,40.66604,-73.963909,40.693785
 var imageUrl = '../static/img/hybridMap.png',
-    imageBounds = [[40.66604, -74.021373], [40.693785, -73.963909]];
+    imageBounds = [[40.66604, -74.02138], [40.693985, -73.965509]];
 
-var historic = L.imageOverlay(imageUrl, imageBounds, 0.2);
+//var historic = L.imageOverlay(imageUrl, imageBounds, 0.2);
 
-historic.addTo(map);
+//historic.addTo(map);
+
+L.control.layers({
+   
+    '1766': L.imageOverlay(imageUrl, imageBounds, 0.2)
+  
+}).addTo(map);
 
 
 
@@ -121,9 +127,11 @@ var floraIcon = L.icon({
 for (var i=0;i<floras.length;i++){
   var lon =floras[i].geometry.coordinates[0];
   var lat =floras[i].geometry.coordinates[1];
-
+  var species = floras[i].properties.species;
+  species = species.toLowerCase();
+  
   //when = when.replace("T"," ");
-  var info = "test";
+  var info = "<img src=\"../static/img/sm_" +species+".jpg\" style=\" width:200px;\"/>";
 
   var ltln = [lat , lon]
 
@@ -142,7 +150,7 @@ function cycle(markers) {
     var i = 0;
     function run() {
         if (++i > array.length - 1) i = 0;
-        map.setView(markers[i].getLatLng(), 17);
+        map.setView(markers[i].getLatLng(), 16);
         markers[i].openPopup();
         window.setTimeout(run, 5000);
     }
