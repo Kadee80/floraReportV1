@@ -104,11 +104,62 @@ SOHplants['Paulownia']={
 	'6-16 inch leaves',
 	'Purple flowers resemble a foxglove flower',
 	'Fruit is a dry egg-shaped containing numerous tiny seeds '
-
-
 	],
 	'native':'China - Invasive in the US',
 	'facts':['']
+
+}
+
+SOSplants = {}
+
+SOSplants['Buckthorn']={
+	'thumb':'sm_buckthorn.jpg',
+	'image':'lg_buckthorn.jpg',
+	'latin':'Rhamnus cathartica',
+	'aka':[],
+	'characteristics':[
+	'Egg-shaped leavea pointed at the tip', 
+	'Leaves are smooth dark glossy and finely-toothed',
+	'3-5 pair of curved leaf veins',
+	'Twigs often end in small (<1/4") sharp stout thorns',
+	'Large, round, berry-like clusters of 1/4" fruit in August/September'
+	],
+	'native':'North and South America - Invasive to Gowanus',
+	'facts':['']
+
+}
+
+SASplants = {}
+
+SASplants['Bayberry']={
+	'thumb':'sm_bayberry.jpg',
+	'image':'lg_bayberry.jpg',
+	'latin':'Myrica cerifera',
+	'aka':['Southern Wax Myrtle', 'Candleberry', 'Tallow shrub'],
+	'characteristics':[
+	'Long ovate simple leaves are toothed towards tip', 
+	'Large shrub or small tree thrives near water',
+	'Small clusters of waxy grey-blue berries arranged alternately along branches'
+	],
+	'native':'Gowanus',
+	'facts':['']
+
+}
+
+COSplants ={}
+COSplants['Silk Tree']={
+	'thumb':'sm_silktree.jpg',
+	'image':'lg_silktree.jpg',
+	'latin':'Albizia julibrissin',
+	'aka':['Persian Silk Tree', 'Pink Silk Tree', 'Mimosa'],
+	'characteristics':[
+	'Showy and fragrant pink flowers that resemble pom- poms',
+	'Fruits are flat, straw-colored 6" leguminous pods containing oval-shaped seeds',
+	'Bark is dark greenish grey in colour and striped vertically as it gets older',
+	'Fern-like leaves, finely divided, 5-8 inches long by about 3-4 inches wide, arranged oppositely along stems'
+	],
+	'native':'Asia - Introduced to US as Ornamental Species',
+	'facts':['The highly scented fruit of bayberry was a source of wax for early settlers in America.']
 
 }
 
@@ -167,7 +218,7 @@ def allflora():
 def catalog():
 
 	# render and return the template
-	return render_template('catalog.html', SOLplants=SOLplants, SOHplants=SOHplants)
+	return render_template('catalog.html', SOLplants=SOLplants, SOHplants=SOHplants, SOSplants=SOSplants, SASplants=SASplants, COSplants=COSplants)
 
 ###################################
 @app.route("/flora/<flora_id>")

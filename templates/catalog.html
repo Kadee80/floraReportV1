@@ -63,15 +63,97 @@
 </div><!--endrow-->
 {% endfor %}
 
+{% for name, info in SOSplants.items() %}
+<div class="row well">
+<!-- left column -->
+	<div class="col-md-4 ">
+		<img class=" img-rounded" src="/static/img/{{ info.get('thumb') }}">
 
-        
-      
-       
-
-
+	</div>
+	<!-- right column -->
+	<div class="col-md-8 "style="padding-left:20px; min-height:300px;" >
+		<h3>{{name|replace("_"," ")}} <em>{{info.get('latin')|replace("_", " ")}}</em></h3>
+		<h5>
+			{% for aka in info.get('aka') %}
+			{{ aka|replace("_"," ")}} &nbsp;
+			{%endfor%}
+		</h5>
+		
+		<h6>Native to: {{info.get('native')}}</h6>
+		<p>
+			<ul>
+			{% for c in info.get('characteristics') %}
+			<li>{{ c|replace("_"," ")}} </li>
+			{%endfor%}
+			</ul>
+		</p>
+		<a href="report/{{name|replace(" ","-")}}" class="btn btn-default btn-lg pull-right" style="position:absolute; bottom:0;">report a sighting</a>
+	</div>
+</div><!--endrow-->
+{% endfor %}
 
 
 {% for name, info in SOLplants.items() %}
+<div class="row well">
+<!-- left column -->
+	<div class="col-md-4 ">
+		<img class=" img-rounded" src="/static/img/{{ info.get('thumb') }}">
+	</div>
+	<!-- right column -->
+	<div class="col-md-8 "style="padding-left:20px; min-height:300px;" >
+		<h3>{{name|replace("_"," ")}} <em>{{info.get('latin')|replace("_", " ")}}</em></h3>
+		<h5>
+			{% for aka in info.get('aka') %}
+			{{ aka|replace("_"," ")}} &nbsp;
+			{%endfor%}
+		</h5>
+		
+		<h6>Native to: {{info.get('native')}}</h6>
+		<p>
+			<ul>
+			{% for c in info.get('characteristics') %}
+			<li>{{ c|replace("_"," ")}} </li>
+			{%endfor%}
+			</ul>
+		</p>
+		<a href="report/{{name|replace(" ","-")}}" class="btn btn-default btn-lg pull-right" style="position:absolute; bottom:0;">report a sighting</a>
+	</div>
+</div><!--endrow-->
+{% endfor %}
+
+{% for name, info in SASplants.items() %}
+<div class="row well">
+<!-- left column -->
+	<div class="col-md-4 ">
+		<img class=" img-rounded" src="/static/img/{{ info.get('thumb') }}">
+	</div>
+	<!-- right column -->
+	<div class="col-md-8 "style="padding-left:20px; min-height:300px;" >
+		<h3>{{name|replace("_"," ")}} <em>{{info.get('latin')|replace("_", " ")}}</em></h3>
+		<h5>
+			{% for aka in info.get('aka') %}
+			{{ aka|replace("_"," ")}} &nbsp;
+			{%endfor%}
+		</h5>
+		
+		<h6>Native to: {{info.get('native')}}</h6>
+		<p>
+			<ul>
+			{% for c in info.get('characteristics') %}
+			<li>{{ c|replace("_"," ")}} </li>
+			{%endfor%}
+			</ul>
+		</p>
+		<a href="report/{{name|replace(" ","-")}}" class="btn btn-default btn-lg pull-right" style="position:absolute; bottom:0;">report a sighting</a>
+	</div>
+</div><!--endrow-->
+{% endfor %}
+
+
+
+
+
+{% for name, info in COSplants.items() %}
 <div class="row well">
 <!-- left column -->
 	<div class="col-md-4 ">
@@ -113,7 +195,7 @@
 		}
 
 		body{
-			background-image: url(../static/img/nice_snow.png);
+			background-color:#F8F8F8;
 		}
 	</style>
 {% endblock %}
